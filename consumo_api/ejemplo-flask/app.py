@@ -6,18 +6,18 @@ app = Flask(__name__, template_folder='templates')
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p>Hola, Mundo!</p>"
 
 
 @app.route("/losestudiantes")
 def los_estudiantes():
     """
     """
-    r = requests.get("http://127.0.0.1:8000/api/estudiantes/",
-            auth=('user', 'pass'))
+    r = requests.get("http://127.0.0.1:8090/api/estudiantes/",
+            auth=('fjsaca', '123456'))
     estudiantes = json.loads(r.content)['results']
     numero_estudiantes = json.loads(r.content)['count']
-    return render_template("losestudiantes.html", estudiantes=estudiantes,
+    return render_template("losEdificios.html", estudiantes=estudiantes,
     numero_estudiantes=numero_estudiantes)
 
 
@@ -25,11 +25,11 @@ def los_estudiantes():
 def los_telefonos():
     """
     """
-    r = requests.get("http://127.0.0.1:8000/api/numerost/",
-            auth=('user', 'pass'))
+    r = requests.get("http://127.0.0.1:8090/api/numerost/",
+            auth=('fjsaca', '123456'))
     datos = json.loads(r.content)['results']
     numero = json.loads(r.content)['count']
-    return render_template("lostelefonos.html", datos=datos,
+    return render_template("losDepartamentos.html", datos=datos,
     numero=numero)
 
 
@@ -37,8 +37,8 @@ def los_telefonos():
 def los_telefonos_dos():
     """
     """
-    r = requests.get("http://127.0.0.1:8000/api/numerost/",
-            auth=('user', 'pass'))
+    r = requests.get("http://127.0.0.1:8090/api/numerost/",
+            auth=('fjsaca', '123456'))
     datos = json.loads(r.content)['results']
     numero = json.loads(r.content)['count']
     datos2 = []
@@ -53,6 +53,6 @@ def los_telefonos_dos():
 def obtener_estudiante(url):
     """
     """
-    r = requests.get(url, auth=('user', 'pass'))
+    r = requests.get(url, auth=('fjsaca', '123456'))
     nombre_estudiante = json.loads(r.content)['nombre']
     return nombre_estudiante

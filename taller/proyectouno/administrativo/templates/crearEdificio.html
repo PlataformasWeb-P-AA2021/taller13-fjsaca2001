@@ -1,0 +1,46 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+
+
+<div class='contenedor'>
+    <h2 class="titulo">Agregar Edificio</h2>
+  <form action="" method="post">
+
+    {% csrf_token %}
+
+          <div class="fieldWrapper">
+            {{ formulario.nombre.errors }}
+            <label for="{{ formulario.nombre.id_for_label }}">Ingrese Nombre:</label>
+            {{ formulario.nombre }}
+          </div>
+          <br>
+          <br>
+          {{ formulario.non_field_errors }}
+          <div class="fieldWrapper">
+            {{ formulario.direccion.errors }}
+            <label for="{{ formulario.direccion.id_for_label }}">Ingrese la dirección:</label>
+            {{ formulario.direccion }}
+          </div>
+          <br>
+          <br>
+          <div class="fieldWrapper">
+            {{ formulario.ciudad.errors }}
+            <label for="{{ formulario.ciudad.id_for_label }}">Ingrese la ciudad:</label>
+            {{ formulario.ciudad }}
+          </div>
+          <br>
+          <br>
+          <div class="fieldWrapper">
+            {{ formulario.tipo.errors }}
+            <label for="{{ formulario.tipo.id_for_label }}">Ingrese el tipo:</label>
+              <br>{{ formulario.tipo }}
+          </div>
+      <br>
+    <button class="btn btn-primary" type="submit">Agregar</button>
+
+  </form>
+</div>
+<br>
+{% endblock %}

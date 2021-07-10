@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Listado de edificios | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h3>Número de edificios {{ numero_edificios }}</h3>
+
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Ciudad</th>
+      <th>Tipo</th>
+      <th>Departamentos</th>
+      <th>Nro Total de Cuartos</th>
+      <th>Costo Total</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+
+  {% for e in edificios %}
+  <tr>
+    <td> {{e.nombre}}</td>
+    <td> {{e.direccion}}</td>
+    <td> {{e.ciudad}}</td>
+    <td> {{e.tipo}}</td>
+    <td>
+      <ul>
+        {% for d in e.departamentos.all %}
+          <li>
+            <span>{{d.nombrePropietario}} - {{d.costoDepartamento}} - {{d.numeroCuartos}} - [<a href="{% url 'editarDepartamento' d.id %}">editar</a>] </span>
+          </li>
+        {% endfor %}
+      </ul>
+      <br>[<a href="{% url 'agregarDepartamentoEdificio' e.id %}">+Departamento</a>]
+      <td>{{ e.obtenerNroCuartos }} Cuartos</td>
+      <td>{{ e.obtenerCostoTotal }}$ usd</td>
+    </td>
+    <td> <a href="{% url 'verEdificio' e.id %}">ver</a> <br>
+      <a href="{% url 'editarEdificio' e.id %}">editar</a> <br>
+      <a href="{% url 'eliminarEdificio' e.id %}"
+      onclick="return confirm('¿Está seguro de la eliminación?')" >
+      eliminar</a>
+    </td>
+
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+
+{% endblock %}

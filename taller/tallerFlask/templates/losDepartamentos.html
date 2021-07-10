@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Departamentos</title>
+  </head>
+  <body>
+    <h5>Listado de los departamentos - {{nroDepartamentos}}</h5>
+
+    {% for d in departamentos %}
+
+    <ol>
+      <li><b>Propietario: </b>{{d['nombrePropietario']}}</li>
+      <li><b>Precio: </b>{{d['costoDepartamento']}}</li>
+      <li><b>Nro Cuartos: </b>{{d['numeroCuartos']}}</li>
+      <li><b>Edificio: </b>{{d['edificio']}}</li>
+    </ol>
+    <hr>
+    {% endfor%}
+  </body>
+</html>
